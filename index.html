@@ -17,9 +17,19 @@
      <span>Nome:</span><input type="text" id="inputNome"><br>
      <span>Idade:</span><input type="text" id="inputIdade"><br>
      <span>Plano:</span><input type="text" id="inputPlano"><br>
-     <button @click="adicionarPaciente">Adicionar</button>
+     <button @click="adicionarPaciente()">Adicionar</button>
      <hr>
-     <h2>Últio</h2>
+     <h4>Ultimo paciente cadastrado</h4>
+     <p v-if="pacientes.length > 0">
+        Paciente {{pacientes[pacientes.length - 1].nome}}
+     </p>
+     <hr>
+     <h4>Pacientes do plano ouro</h4>
+     <p v-for="p in pacientes">{{p.plano == "Ouro" ? p.nome : ''}}</p>
+     <hr>
+
+     <h4>Pacientes cadastrados</h4>
+     <p v-for="p in pacientes">{{p.nome}}</p>
         
     </div>
 
@@ -33,16 +43,15 @@
          
         },
             methods:{
-                adicionarPaciente() {
-                    this.pacientes.push ({
-                        nome: inputNome.value,
-                        idade: InputIdade.value,
-                        plano: InputPlano.value 
-                    })
-             
-            }
+              adicionarPaciente(){
+                this.pacientes.push({
+                    nome: inputNome.value,
+                    idade: inputIdade.value,
+                    plano: inputPlano.value
+                })
+              }
         } 
-    });
+    })
 
     </script>
 </body>
